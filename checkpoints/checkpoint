@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/tnf225/checkpoints/pool.model"
+all_model_checkpoint_paths: "/home/tnf225/checkpoints/pool.model"
