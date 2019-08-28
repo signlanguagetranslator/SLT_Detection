@@ -1,12 +1,13 @@
 import numpy as np
 import cv2
 boundaries = [
-    ([0, 120, 0], [140, 255, 100]),
-    ([25, 0, 75], [180, 38, 255])
+   ([160, 100, 49], [177, 255, 255]),
+    ([0, 0, 0], [0, 0, 0])
 ]
 
 
 def handsegment(frame):
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     lower, upper = boundaries[0]
     lower = np.array(lower, dtype="uint8")
     upper = np.array(upper, dtype="uint8")
@@ -31,10 +32,13 @@ def handsegment(frame):
     # 		print "Aadi"
     # 		mask2 = cv2.inRange(frame, lower, upper)
     mask = cv2.bitwise_or(mask1, mask2)
+    frame = cv2.cvtColor(frame, cv2.COLOR_HSV2BGR)
     output = cv2.bitwise_and(frame, frame, mask=mask)
+
     # show the images
-    # cv2.imshow("images", mask)
-    # cv2.imshow("images", output)
+    #cv2.imshow("images", output)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
     return output
 
 if __name__ == '__main__':
