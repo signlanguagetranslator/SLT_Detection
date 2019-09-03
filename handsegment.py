@@ -4,7 +4,7 @@ boundaries = [
    ([160, 100, 49], [177, 255, 255]),
     ([0, 0, 0], [0, 0, 0])
 ]
-
+#([160, 150, 80], [180, 255, 255]),
 
 def handsegment(frame):
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
