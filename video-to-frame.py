@@ -45,26 +45,28 @@ def convert(gesture_folder, target_folder):
             count = 0
 
             # assumption only first 200 frames are important
-            while count < 100:
+            while count < 37:
                 ret, frame = cap.read()  # extract frame
                 if ret is False:
                     break
-                framename = os.path.splitext(video)[0]
-                framename = framename + "_frame_" + str(count) + ".jpeg"
-                hc.append([join(gesture_frames_path, framename), gesture, frameCount])
+                if count % 2 == 0:
+                    framename = os.path.splitext(video)[0]
+                    framename = framename + "_frame_" + str(int(count / 2)) + ".jpeg"
+                    hc.append([join(gesture_frames_path, framename), gesture, frameCount])
 
-                if not os.path.exists(framename):
-                    frame = hs.handsegment(frame)
-                    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                    lastFrame = frame
-                    cv2.imwrite(framename, frame)
+                    if not os.path.exists(framename):
+                        frame = hs.handsegment(frame)
+                        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                        lastFrame = frame
+                        cv2.imwrite(framename, frame)
 
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
                 count += 1
-
+            count /= 2
+            count = int(count)
             # repeat last frame untill we get 200 frames
-            while count < 100:
+            while count < 25:
                 framename = os.path.splitext(video)[0]
                 framename = framename + "_frame_" + str(count) + ".jpeg"
                 hc.append([join(gesture_frames_path, framename), gesture, frameCount])

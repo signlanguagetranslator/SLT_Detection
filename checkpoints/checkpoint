@@ -1,2 +1,2 @@
-model_checkpoint_path: "/home/tnf225/checkpoints/pool.model"
-all_model_checkpoint_paths: "/home/tnf225/checkpoints/pool.model"
+model_checkpoint_path: "D:\\SLT_Detection\\checkpoints\\pool.model"
+all_model_checkpoint_paths: "D:\\SLT_Detection\\checkpoints\\pool.model"

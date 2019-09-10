@@ -1,10 +1,11 @@
 import numpy as np
 import cv2
 boundaries = [
-   ([160, 100, 49], [177, 255, 255]),
+   ([160, 83, 80], [180, 255, 255]),
+    #([160, 0, 0], [180, 255, 255]),
     ([0, 0, 0], [0, 0, 0])
 ]
-#([160, 83, 80], [180, 255, 255]),
+
 
 def handsegment(frame):
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -34,7 +35,7 @@ def handsegment(frame):
     mask = cv2.bitwise_or(mask1, mask2)
     frame = cv2.cvtColor(frame, cv2.COLOR_HSV2BGR)
     output = cv2.bitwise_and(frame, frame, mask=mask)
-
+    output = cv2.resize(output, dsize=(1920, 1080), interpolation=cv2.INTER_AREA)
     # show the images
     #cv2.imshow("images", output)
     #cv2.waitKey(0)
@@ -42,5 +43,5 @@ def handsegment(frame):
     return output
 
 if __name__ == '__main__':
-    frame = cv2.imread("test.jpeg")
+    #frame = cv2.imread("test.jpeg")
     handsegment(frame)
